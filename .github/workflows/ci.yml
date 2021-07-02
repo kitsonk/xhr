@@ -1,0 +1,20 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: xhr tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: download deno
+        uses: denoland/setup-deno@main
+        with:
+          deno-version: "1.11.4"
+      - name: check formatting
+        run: deno fmt --check
+      - name: check linting
+        run: deno lint
+      - name: run tests
+        run: deno test --allow-read=. --allow-net=deno.land
