@@ -4,7 +4,6 @@
 
 ![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fxhr%2Fmod.ts)
 ![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fxhr%2Fmod.ts)
-[![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fxhr%2Fmod.ts)](https://doc.deno.land/https/deno.land/x/xhr/mod.ts)
 
 A `XMLHttpRequest` polyfill for [Deno CLI](https://deno.land/) and
 [Deno Deploy](https://deno.com/deploy/). The main intent is to make code written
