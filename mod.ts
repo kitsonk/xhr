@@ -600,13 +600,12 @@ class XMLHttpRequest extends XMLHttpRequestEventTarget {
         return;
       }
       const total = extractLength(this.#response) ?? 0;
-      let lastInvoked = 0;
       const processBodyChunk = (bytes: Uint8Array) => {
         this.#receivedBytes = appendBytes(this.#receivedBytes, bytes);
-        if ((Date.now() - lastInvoked) <= 50) {
-          return;
-        }
-        lastInvoked = Date.now();
+        // the specification indicates that this should return if last invoked
+        // was <= 50ms ago, the problem is that often chunks arrive under that
+        // and a client doesn't get a progress event, which then causes it to
+        // "hang" when long polling
         if (this.#state === State.HEADERS_RECEIVED) {
           this.#state = State.LOADING;
         }
