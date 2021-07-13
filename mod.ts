@@ -704,8 +704,13 @@ class XMLHttpRequest extends XMLHttpRequestEventTarget {
 }
 
 // deno-lint-ignore ban-types
-function maybeDefine(value: Function, scope: object) {
-  const name = value.name;
+function maybeDefine(value: Function, name: string, scope: object) {
+  Object.defineProperty(value, "name", {
+    value: name,
+    writable: false,
+    enumerable: false,
+    configurable: true,
+  });
   if (!(name in globalThis)) {
     Object.defineProperty(scope, name, {
       value,
@@ -716,6 +721,6 @@ function maybeDefine(value: Function, scope: object) {
   }
 }
 
-maybeDefine(XMLHttpRequest, globalThis);
-maybeDefine(XMLHttpRequestEventTarget, globalThis);
-maybeDefine(XMLHttpRequestUpload, globalThis);
+maybeDefine(XMLHttpRequest, "XMLHttpRequest", globalThis);
+maybeDefine(XMLHttpRequestEventTarget, "XMLHttpRequestEventTarget", globalThis);
+maybeDefine(XMLHttpRequestUpload, "XMLHttpRequestUpload", globalThis);
