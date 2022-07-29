@@ -58,6 +58,7 @@ interface XMLHttpRequestEventTarget extends EventTarget {
   ): void;
 }
 
+// deno-lint-ignore no-var
 declare var XMLHttpRequestEventTarget: {
   prototype: XMLHttpRequestEventTarget;
   new (): XMLHttpRequestEventTarget;
@@ -187,6 +188,7 @@ interface XMLHttpRequest extends XMLHttpRequestEventTarget {
   ): void;
 }
 
+// deno-lint-ignore no-var
 declare var XMLHttpRequest: {
   prototype: XMLHttpRequest;
   new (): XMLHttpRequest;
@@ -226,6 +228,7 @@ interface XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
   ): void;
 }
 
+// deno-lint-ignore no-var
 declare var XMLHttpRequestUpload: {
   prototype: XMLHttpRequestUpload;
   new (): XMLHttpRequestUpload;
