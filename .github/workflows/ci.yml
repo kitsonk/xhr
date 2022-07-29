@@ -11,10 +11,10 @@ jobs:
       - name: download deno
         uses: denoland/setup-deno@main
         with:
-          deno-version: "1.11.4"
+          deno-version: 1
       - name: check formatting
         run: deno fmt --check
       - name: check linting
         run: deno lint
       - name: run tests
-        run: deno test --allow-read=. --allow-net=deno.land
+        run: deno task test

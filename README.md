@@ -23,7 +23,7 @@ This polyfill has several known/intentional limitations from a browser standard
   have deprecated it in the main thread. Since this polyfill works by calling
   Deno's `fetch()` it is nearly impossible to generate a sync version, plus it
   is a really bad idea to block a thread while waiting for a server response.
-  Don't do it, don't use software that requires it.
+  **Don't do it, don't use software that requires it.**
 
 ## Usage
 

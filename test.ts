@@ -1,6 +1,6 @@
 // Copyright 2021 Kitson P. Kelly. All rights reserved. MIT License.
 
-import { assert } from "https://deno.land/std@0.100.0/testing/asserts.ts";
+import { assert } from "https://deno.land/std@0.150.0/testing/asserts.ts";
 import type {} from "./types.d.ts";
 
 Deno.test({

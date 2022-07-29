@@ -2,10 +2,41 @@
 
 // deno-lint-ignore-file no-explicit-any
 
+/**
+ * Provides a polyfill for Deno CLI and Deploy for
+ * [`XMLHttpRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+ * (_XHR_).
+ *
+ * When loaded, it will inject `XMLHttpRequest` into the global namespace along
+ * with a couple other key objects.
+ *
+ * While the module exports `XMLHttpRequest`, most use cases it should just be
+ * imported _before_ any other dependencies that require XHR to be present:
+ *
+ * ```ts
+ * import "https://deno.land/x/xhr/mod.ts";
+ * import * as lib from "https://other/dependency/that/needs/xhr/lib.js";
+ * ```
+ *
+ * This polyfill has several known/intentional limitations from a browser
+ * standard `XMLHttpRequest`:
+ *
+ * - It does not handle XML, though the name implies it, nor does it handle HTML
+ *   being treated as a response type `"document"`. This uses the browser's
+ *   built in parser to parse the XML and HTML into a DOM object.
+ * - Sync is not supported (passing `false` to the `async` argument). Most
+ *   browsers have deprecated it in the main thread. Since this polyfill works
+ *   by calling Deno's `fetch()` it is nearly impossible to generate a sync
+ *   version, plus it is a really bad idea to block a thread while waiting for a
+ *   server response. **Don't do it, don't use software that requires it.**
+ *
+ * @module
+ */
+
 import {
-  charset,
   contentType,
-} from "https://deno.land/x/media_types@v2.9.0/mod.ts";
+  getCharset,
+} from "https://deno.land/std@0.150.0/media_types/mod.ts";
 
 type XMLHttpRequestResponseType =
   | ""
@@ -94,7 +125,7 @@ function appendBytes(...bytes: Uint8Array[]): Uint8Array {
   return result;
 }
 
-class XMLHttpRequestEventTarget extends EventTarget {
+export class XMLHttpRequestEventTarget extends EventTarget {
   onabort: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null = null;
   onerror: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null = null;
   onload: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null = null;
@@ -151,7 +182,7 @@ class XMLHttpRequestEventTarget extends EventTarget {
   }
 }
 
-class XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
+export class XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
 }
 
 enum State {
@@ -164,7 +195,7 @@ enum State {
 
 const METHODS = ["GET", "HEAD", "POST", "DELETE", "OPTIONS", "PUT"];
 
-class XMLHttpRequest extends XMLHttpRequestEventTarget {
+export class XMLHttpRequest extends XMLHttpRequestEventTarget {
   #abortedFlag = false;
   #abortController?: AbortController;
   #crossOriginCredentials = false;
@@ -203,7 +234,7 @@ class XMLHttpRequest extends XMLHttpRequestEventTarget {
   }
 
   #getFinalEncoding() {
-    return charset(this.#getFinalMIMEType())?.toLocaleLowerCase() ?? null;
+    return getCharset(this.#getFinalMIMEType())?.toLocaleLowerCase() ?? null;
   }
 
   #getTextResponse() {
