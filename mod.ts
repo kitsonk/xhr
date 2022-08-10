@@ -317,7 +317,11 @@ export class XMLHttpRequest extends XMLHttpRequestEventTarget {
 
   #terminate() {
     if (this.#abortController) {
-      this.#abortController.abort();
+      try {
+        this.#abortController.abort();
+      } catch {
+        // just swallowing errors here
+      }
       this.#abortController = undefined;
     }
   }
