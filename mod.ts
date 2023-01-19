@@ -675,10 +675,12 @@ export class XMLHttpRequest extends XMLHttpRequestEventTarget {
       return processResponse(response);
     }).catch(processRejection);
     if (this.#timeout > 0) {
+      let tid = -1;
       const t = new Promise<boolean>((res) => {
-        setTimeout(() => res(true), this.#timeout);
+        tid = setTimeout(() => res(true), this.#timeout);
       });
       Promise.race([p, t]).then((value) => {
+        clearTimeout(tid);
         if (value) {
           this.#timedoutFlag = true;
           this.#terminate();
