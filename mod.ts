@@ -193,7 +193,7 @@ enum State {
   DONE = 4,
 }
 
-const METHODS = ["GET", "HEAD", "POST", "DELETE", "OPTIONS", "PUT"];
+const METHODS = ["GET", "HEAD", "POST", "DELETE", "OPTIONS", "PUT", "PATCH"];
 
 export class XMLHttpRequest extends XMLHttpRequestEventTarget {
   #abortedFlag = false;
