@@ -36,7 +36,7 @@
 import {
   contentType,
   getCharset,
-} from "https://deno.land/std@0.150.0/media_types/mod.ts";
+} from "https://deno.land/std@0.199.0/media_types/mod.ts";
 
 type XMLHttpRequestResponseType =
   | ""
@@ -193,7 +193,24 @@ enum State {
   DONE = 4,
 }
 
-const METHODS = ["GET", "HEAD", "POST", "DELETE", "OPTIONS", "PUT", "PATCH"];
+const NORMALIZED_METHODS = [
+  "GET",
+  "HEAD",
+  "POST",
+  "DELETE",
+  "OPTIONS",
+  "PUT",
+  "PATCH",
+];
+const FORBIDDEN_METHODS = ["CONNECT", "TRACE", "TRACK"];
+
+function isForbidden(method: string): boolean {
+  return FORBIDDEN_METHODS.includes(method.toUpperCase());
+}
+
+function normalize(method: string): string {
+  return NORMALIZED_METHODS.find((m) => m === method.toUpperCase()) ?? method;
+}
 
 export class XMLHttpRequest extends XMLHttpRequestEventTarget {
   #abortedFlag = false;
@@ -520,13 +537,16 @@ export class XMLHttpRequest extends XMLHttpRequestEventTarget {
     username: string | null = null,
     password: string | null = null,
   ): void {
-    method = method.toLocaleUpperCase();
-    if (!METHODS.includes(method)) {
+    if (typeof method !== "string") {
+      throw new DOMException("The method is invalid", "SyntaxError");
+    }
+    if (isForbidden(method)) {
       throw new DOMException(
-        `The method "${method}" is not allowed.`,
-        "SyntaxError",
+        `The method "${method}" is forbidden.`,
+        "SecurityError",
       );
     }
+    method = normalize(method);
     let parsedUrl: URL;
     try {
       let base: string | undefined;
