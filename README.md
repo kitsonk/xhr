@@ -31,7 +31,7 @@ Import the module. The module will analyze the global scope, and if
 `XMLHttpRequest` and its associated APIs are not defined, it will add them:
 
 ```ts
-import "https://deno.land/x/xhr@0.1.0/mod.ts";
+import "https://deno.land/x/xhr@0.3.1/mod.ts";
 ```
 
 Now, `XMLHttpRequest` should be available in the global scope.
@@ -49,14 +49,14 @@ If all you want to do is "polyfill" the types, they are available here under
 `./types.d.ts`. You can either import them like:
 
 ```ts
-import type {} from "https://deno.land/x/xhr@0.1.0/types.d.ts";
+import type {} from "https://deno.land/x/xhr@0.3.1/types.d.ts";
 ```
 
 Or if you are using Deno 1.12 or later, you can use the triple-slash directive
 like:
 
 ```ts
-/// <reference types="https://deno.land/x/xhr@0.1.0/types.d.ts" />
+/// <reference types="https://deno.land/x/xhr@0.3.1/types.d.ts" />
 ```
 
 ---
