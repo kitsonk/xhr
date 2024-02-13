@@ -137,7 +137,7 @@ export class XMLHttpRequestEventTarget extends EventTarget {
   onprogress: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null = null;
   ontimeout: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null = null;
 
-  dispatchEvent(evt: Event) {
+  dispatchEvent(evt: Event): boolean {
     if (evt instanceof ProgressEvent) {
       const xhr: XMLHttpRequest = this as any;
       switch (evt.type) {
@@ -505,7 +505,7 @@ export class XMLHttpRequest extends XMLHttpRequestEventTarget {
     }
   }
 
-  dispatchEvent(evt: Event) {
+  dispatchEvent(evt: Event): boolean {
     switch (evt.type) {
       case "readystatechange":
         if (this.onreadystatechange) {
@@ -722,43 +722,43 @@ export class XMLHttpRequest extends XMLHttpRequestEventTarget {
     this.#headers.append(name, value);
   }
 
-  get DONE() {
+  get DONE(): State.DONE {
     return State.DONE;
   }
 
-  get HEADERS_RECEIVED() {
+  get HEADERS_RECEIVED(): State.HEADERS_RECEIVED {
     return State.HEADERS_RECEIVED;
   }
 
-  get LOADING() {
+  get LOADING(): State.LOADING {
     return State.LOADING;
   }
 
-  get OPENED() {
+  get OPENED(): State.OPENED {
     return State.OPENED;
   }
 
-  get UNSENT() {
+  get UNSENT(): State.UNSENT {
     return State.UNSENT;
   }
 
-  static get DONE() {
+  static get DONE(): State.DONE {
     return State.DONE;
   }
 
-  static get HEADERS_RECEIVED() {
+  static get HEADERS_RECEIVED(): State.HEADERS_RECEIVED {
     return State.HEADERS_RECEIVED;
   }
 
-  static get LOADING() {
+  static get LOADING(): State.LOADING {
     return State.LOADING;
   }
 
-  static get OPENED() {
+  static get OPENED(): State.OPENED {
     return State.OPENED;
   }
 
-  static get UNSENT() {
+  static get UNSENT(): State.UNSENT {
     return State.UNSENT;
   }
 }

@@ -1,4 +1,7 @@
 {
+  "name": "@kitsonk/xhr",
+  "version": "0.3.2",
+  "exports": "./mod.ts",
   "tasks": {
     "test": "deno test --allow-read=. --allow-net=deno.land"
   },
