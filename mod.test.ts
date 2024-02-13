@@ -1,7 +1,7 @@
 // Copyright 2021 Kitson P. Kelly. All rights reserved. MIT License.
 
-import { assert } from "https://deno.land/std@0.199.0/assert/assert.ts";
-import { assertThrows } from "https://deno.land/std@0.199.0/assert/assert_throws.ts";
+import { assert } from "https://deno.land/std@0.215.0/assert/assert.ts";
+import { assertThrows } from "https://deno.land/std@0.215.0/assert/assert_throws.ts";
 import type {} from "./types.d.ts";
 
 import "./mod.ts";

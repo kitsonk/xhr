@@ -35,8 +35,11 @@
 
 import {
   contentType,
+} from "https://deno.land/std@0.215.0/media_types/content_type.ts";
+
+import {
   getCharset,
-} from "https://deno.land/std@0.199.0/media_types/mod.ts";
+} from "https://deno.land/std@0.215.0/media_types/get_charset.ts";
 
 type XMLHttpRequestResponseType =
   | ""
