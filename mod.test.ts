@@ -2,8 +2,8 @@
 
 /// <reference types="./globals.d.ts" />
 
-import { assert } from "https://deno.land/std@0.215.0/assert/assert.ts";
-import { assertThrows } from "https://deno.land/std@0.215.0/assert/assert_throws.ts";
+import { assert } from "jsr:@std/assert@0.215/assert";
+import { assertThrows } from "jsr:@std/assert@0.215/assert_throws";
 
 import "./mod.ts";
 

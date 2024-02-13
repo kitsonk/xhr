@@ -14,7 +14,7 @@
  * imported _before_ any other dependencies that require XHR to be present:
  *
  * ```ts
- * import "https://deno.land/x/xhr/mod.ts";
+ * import "jsr:@kitsonk/xhr";
  * import * as lib from "https://other/dependency/that/needs/xhr/lib.js";
  * ```
  *
@@ -33,13 +33,8 @@
  * @module
  */
 
-import {
-  contentType,
-} from "https://deno.land/std@0.215.0/media_types/content_type.ts";
-
-import {
-  getCharset,
-} from "https://deno.land/std@0.215.0/media_types/get_charset.ts";
+import { contentType } from "jsr:@std/media_types@0.215/content_type";
+import { getCharset } from "jsr:@std/media_types@0.215/get_charset";
 
 type XMLHttpRequestResponseType =
   | ""

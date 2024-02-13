@@ -2,7 +2,7 @@
   "name": "@kitsonk/xhr",
   "version": "0.4.0",
   "exports": {
-    "./": "./mod.ts",
+    ".": "./mod.ts",
     "./globals": "./globals.d.ts"
   },
   "tasks": {
