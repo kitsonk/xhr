@@ -1,9 +1,6 @@
 # xhr
 
-[![oak ci](https://github.com/kitsonk/xhr/workflows/ci/badge.svg)](https://github.com/kitsonk/xhr)
-
-![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fxhr%2Fmod.ts)
-![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fxhr%2Fmod.ts)
+[![xhr ci](https://github.com/kitsonk/xhr/workflows/ci/badge.svg)](https://github.com/kitsonk/xhr)
 
 A `XMLHttpRequest` polyfill for [Deno CLI](https://deno.land/) and
 [Deno Deploy](https://deno.com/deploy/). The main intent is to make code written
@@ -42,23 +39,23 @@ The built in types for Deno do not include the `XMLHttpRequest` and associated
 types, so if you are type checking your code and get errors about them not being
 defined, there are a couple of solutions. If your code is generally written for
 the browser, you might want to consider
-[Targeting Deno and the Browser](https://deno.land/manual@v1.11.4/typescript/configuration#targeting-deno-and-the-browser)
+[Targeting Deno and the Browser](https://docs.deno.com/runtime/manual/advanced/typescript/configuration#targeting-deno-and-the-browser)
 section of the Deno Manual.
 
 If all you want to do is "polyfill" the types, they are available here under
-`./types.d.ts`. You can either import them like:
+`./globals.d.ts`. You can either import them like:
 
 ```ts
-import type {} from "https://deno.land/x/xhr@0.3.1/types.d.ts";
+import type {} from "https://deno.land/x/xhr@0.3.1/globals.d.ts";
 ```
 
 Or if you are using Deno 1.12 or later, you can use the triple-slash directive
 like:
 
 ```ts
-/// <reference types="https://deno.land/x/xhr@0.3.1/types.d.ts" />
+/// <reference types="https://deno.land/x/xhr@0.3.1/globals.d.ts" />
 ```
 
 ---
 
-Copyright 2021 Kitson P. Kelly. All rights reserved.
+Copyright 2021-2024 Kitson P. Kelly. All rights reserved.
