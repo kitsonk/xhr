@@ -1,3 +1,24 @@
+/**
+ * The built in types for Deno do not include the `XMLHttpRequest` and
+ * associated types, so if you are type checking your code and get errors about
+ * them not being defined, there are a couple of solutions.
+ *
+ * If all you want to do is "polyfill" the types, they are available here under
+ * `./globals` export. You can either import them like:
+ *
+ * ```ts
+ * import type {} from "jsr:/@kitsonk/xhr/globals";
+ * ```
+ *
+ * Or using the triple slash reference like:
+ *
+ * ```ts
+ * /// <reference types="jsr:/@kitsonk/xhr/globals" />
+ * ```
+ *
+ * @module
+ */
+
 // deno-lint-ignore-file no-explicit-any
 
 type XMLHttpRequestResponseType =
@@ -58,6 +79,10 @@ interface XMLHttpRequestEventTarget extends EventTarget {
   ): void;
 }
 
+/**
+ * The interface for event handlers for {@linkcode XMLHttpRequest} and
+ * {@lincode XMLHttpRequestUpload}.
+ */
 // deno-lint-ignore no-var
 declare var XMLHttpRequestEventTarget: {
   prototype: XMLHttpRequestEventTarget;
@@ -193,6 +218,15 @@ interface XMLHttpRequest extends XMLHttpRequestEventTarget {
   ): void;
 }
 
+/**
+ * XMLHttpRequest (XHR) objects are used to interact with servers. You can
+ * retrieve data from a URL without having to do a full page refresh. This
+ * enables a Web page to update just part of a page without disrupting what the
+ * user is doing.
+ *
+ * Despite its name, XMLHttpRequest can be used to retrieve any type of data,
+ * not just XML.
+ */
 // deno-lint-ignore no-var
 declare var XMLHttpRequest: {
   prototype: XMLHttpRequest;
@@ -233,6 +267,12 @@ interface XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
   ): void;
 }
 
+/**
+ * Represents the upload process for a specific {@linkcode XMLHttpRequest}. It
+ * is an _opaque_ object that represents the underlying, runtime-dependent,
+ * upload process. It is an {@linkcode XMLHttpRequestEventTarget} and can be
+ * obtained by calling `XMLHttpRequest.upload`.
+ */
 // deno-lint-ignore no-var
 declare var XMLHttpRequestUpload: {
   prototype: XMLHttpRequestUpload;
