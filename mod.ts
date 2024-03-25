@@ -14,7 +14,7 @@
  * imported _before_ any other dependencies that require XHR to be present:
  *
  * ```ts
- * import "https://deno.land/x/xhr/mod.ts";
+ * import "jsr:/@kitsonk/xhr";
  * import * as lib from "https://other/dependency/that/needs/xhr/lib.js";
  * ```
  *
@@ -33,13 +33,8 @@
  * @module
  */
 
-import {
-  contentType,
-} from "https://deno.land/std@0.215.0/media_types/content_type.ts";
-
-import {
-  getCharset,
-} from "https://deno.land/std@0.215.0/media_types/get_charset.ts";
+import { contentType } from "jsr:@std/media_types@0.215/content_type";
+import { getCharset } from "jsr:@std/media_types@0.215/get_charset";
 
 type XMLHttpRequestResponseType =
   | ""
@@ -128,6 +123,10 @@ function appendBytes(...bytes: Uint8Array[]): Uint8Array {
   return result;
 }
 
+/**
+ * The interface for event handlers for {@linkcode XMLHttpRequest} and
+ * {@lincode XMLHttpRequestUpload}.
+ */
 export class XMLHttpRequestEventTarget extends EventTarget {
   onabort: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null = null;
   onerror: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null = null;
@@ -185,6 +184,12 @@ export class XMLHttpRequestEventTarget extends EventTarget {
   }
 }
 
+/**
+ * Represents the upload process for a specific {@linkcode XMLHttpRequest}. It
+ * is an _opaque_ object that represents the underlying, runtime-dependent,
+ * upload process. It is an {@linkcode XMLHttpRequestEventTarget} and can be
+ * obtained by calling `XMLHttpRequest.upload`.
+ */
 export class XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
 }
 
@@ -215,6 +220,15 @@ function normalize(method: string): string {
   return NORMALIZED_METHODS.find((m) => m === method.toUpperCase()) ?? method;
 }
 
+/**
+ * XMLHttpRequest (XHR) objects are used to interact with servers. You can
+ * retrieve data from a URL without having to do a full page refresh. This
+ * enables a Web page to update just part of a page without disrupting what the
+ * user is doing.
+ *
+ * Despite its name, XMLHttpRequest can be used to retrieve any type of data,
+ * not just XML.
+ */
 export class XMLHttpRequest extends XMLHttpRequestEventTarget {
   #abortedFlag = false;
   #abortController?: AbortController;

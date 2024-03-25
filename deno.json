@@ -1,12 +1,15 @@
 {
   "name": "@kitsonk/xhr",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "exports": {
-    "./": "./mod.ts",
+    ".": "./mod.ts",
     "./globals": "./globals.d.ts"
   },
   "tasks": {
     "test": "deno test --allow-read=. --allow-net=deno.land"
+  },
+  "fmt": {
+    "exclude": ["./README.md"]
   },
   "lock": false
 }
