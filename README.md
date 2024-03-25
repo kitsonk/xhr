@@ -7,8 +7,9 @@ A `XMLHttpRequest` polyfill for [Deno CLI](https://deno.land/) and
 for a browser that uses `XMLHttpRequest` to fetch JSON, bytes, or text
 asynchronously work with Deno.
 
-> ⚠️ At this stage, this polyfill is very experimental and is not well tested.
-> USE AT YOUR OWN RISK. Bug reports are welcome.
+> ![WARNING]
+> At this stage, this polyfill is very experimental and is not well tested. USE
+> AT YOUR OWN RISK. Bug reports are welcome.
 
 This polyfill has several known/intentional limitations from a browser standard
 `XMLHttpRequest`:
@@ -28,7 +29,7 @@ Import the module. The module will analyze the global scope, and if
 `XMLHttpRequest` and its associated APIs are not defined, it will add them:
 
 ```ts
-import "jsr:@kitsonk/xhr";
+import "jsr:/@kitsonk/xhr";
 ```
 
 Now, `XMLHttpRequest` should be available in the global scope.
@@ -46,14 +47,13 @@ If all you want to do is "polyfill" the types, they are available here under
 `./globals.d.ts`. You can either import them like:
 
 ```ts
-import type {} from "jsr:@kitsonk/xhr/globals";
+import type {} from "jsr:/@kitsonk/xhr/globals";
 ```
 
-Or if you are using Deno 1.12 or later, you can use the triple-slash directive
-like:
+Or using the triple slash reference like:
 
 ```ts
-/// <reference types="jsr:@kitsonk/xhr/globals" />
+/// <reference types="jsr:/@kitsonk/xhr/globals" />
 ```
 
 ---

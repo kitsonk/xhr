@@ -64,7 +64,12 @@ declare var XMLHttpRequestEventTarget: {
   new (): XMLHttpRequestEventTarget;
 };
 
-/** Use XMLHttpRequest (XHR) objects to interact with servers. You can retrieve data from a URL without having to do a full page refresh. This enables a Web page to update just part of a page without disrupting what the user is doing. */
+/**
+ * Use XMLHttpRequest (XHR) objects to interact with servers. You can retrieve
+ * data from a URL without having to do a full page refresh. This enables a Web
+ * page to update just part of a page without disrupting what the user is
+ * doing.
+ */
 interface XMLHttpRequest extends XMLHttpRequestEventTarget {
   onreadystatechange: ((this: XMLHttpRequest, ev: Event) => any) | null;
   /**
