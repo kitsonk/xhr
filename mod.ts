@@ -33,8 +33,8 @@
  * @module
  */
 
-import { contentType } from "jsr:@std/media_types@0.215/content_type";
-import { getCharset } from "jsr:@std/media_types@0.215/get_charset";
+import { contentType } from "jsr:/@std/media-types@0.220/content_type";
+import { getCharset } from "jsr:/@std/media-types@0.220/get_charset";
 
 type XMLHttpRequestResponseType =
   | ""

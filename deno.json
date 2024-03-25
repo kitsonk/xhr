@@ -1,6 +1,6 @@
 {
   "name": "@kitsonk/xhr",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "exports": {
     ".": "./mod.ts",
     "./globals": "./globals.d.ts"

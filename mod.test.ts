@@ -2,8 +2,8 @@
 
 /// <reference types="./globals.d.ts" />
 
-import { assert } from "jsr:@std/assert@0.215/assert";
-import { assertThrows } from "jsr:@std/assert@0.215/assert_throws";
+import { assert } from "jsr:/@std/assert@0.220/assert";
+import { assertThrows } from "jsr:/@std/assert@0.220/assert_throws";
 
 import "./mod.ts";
 
