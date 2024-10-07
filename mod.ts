@@ -33,8 +33,7 @@
  * @module
  */
 
-import { contentType } from "jsr:/@std/media-types@0.220/content_type";
-import { getCharset } from "jsr:/@std/media-types@0.220/get_charset";
+import { contentType, getCharset } from "jsr:/@std/media-types@^1.0";
 
 type XMLHttpRequestResponseType =
   | ""
@@ -136,7 +135,7 @@ export class XMLHttpRequestEventTarget extends EventTarget {
   onprogress: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null = null;
   ontimeout: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null = null;
 
-  dispatchEvent(evt: Event): boolean {
+  override dispatchEvent(evt: Event): boolean {
     if (evt instanceof ProgressEvent) {
       const xhr: XMLHttpRequest = this as any;
       switch (evt.type) {
@@ -519,7 +518,7 @@ export class XMLHttpRequest extends XMLHttpRequestEventTarget {
     }
   }
 
-  dispatchEvent(evt: Event): boolean {
+  override dispatchEvent(evt: Event): boolean {
     switch (evt.type) {
       case "readystatechange":
         if (this.onreadystatechange) {
@@ -568,7 +567,7 @@ export class XMLHttpRequest extends XMLHttpRequestEventTarget {
     try {
       let base: string | undefined;
       try {
-        base = window.location.toString();
+        base = globalThis.location.toString();
       } catch {
         // we just want to avoid the error about location in Deno
       }
