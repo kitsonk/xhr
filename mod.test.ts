@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Kitson P. Kelly. All rights reserved. MIT License.
+// Copyright 2021-2025 Kitson P. Kelly. All rights reserved. MIT License.
 
 /// <reference types="./globals.d.ts" />
 

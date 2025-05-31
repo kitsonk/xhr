@@ -58,4 +58,4 @@ Or using the triple slash reference like:
 
 ---
 
-Copyright 2021-2024 Kitson P. Kelly. All rights reserved.
+Copyright 2021-2025 Kitson P. Kelly. All rights reserved.

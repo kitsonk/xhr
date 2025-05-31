@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Kitson P. Kelly. All rights reserved. MIT License.
+// Copyright 2021-2025 Kitson P. Kelly. All rights reserved. MIT License.
 
 // deno-lint-ignore-file no-explicit-any
 
@@ -33,7 +33,7 @@
  * @module
  */
 
-import { contentType, getCharset } from "jsr:/@std/media-types@^1.0";
+import { contentType, getCharset } from "jsr:/@std/media-types@^1.1";
 
 type XMLHttpRequestResponseType =
   | ""
@@ -108,12 +108,14 @@ function parseJSONFromBytes(value: Uint8Array): any {
   return JSON.parse(string);
 }
 
-function appendBytes(...bytes: Uint8Array[]): Uint8Array {
+function appendBytes<AB extends ArrayBufferLike = ArrayBuffer>(
+  ...bytes: Uint8Array<AB>[]
+): Uint8Array<AB> {
   let length = 0;
   for (const b of bytes) {
     length += b.length;
   }
-  const result = new Uint8Array(length);
+  const result = new Uint8Array(length) as Uint8Array<AB>;
   let offset = 0;
   for (const b of bytes) {
     result.set(b, offset);
@@ -671,7 +673,7 @@ export class XMLHttpRequest extends XMLHttpRequestEventTarget {
         return;
       }
       const total = extractLength(this.#response) ?? 0;
-      const processBodyChunk = (bytes: Uint8Array) => {
+      const processBodyChunk = (bytes: Uint8Array<ArrayBuffer>) => {
         this.#receivedBytes = appendBytes(this.#receivedBytes, bytes);
         // the specification indicates that this should return if last invoked
         // was <= 50ms ago, the problem is that often chunks arrive under that
@@ -696,7 +698,7 @@ export class XMLHttpRequest extends XMLHttpRequestEventTarget {
       };
       try {
         for await (const bytes of response.body) {
-          processBodyChunk(bytes);
+          processBodyChunk(bytes as Uint8Array<ArrayBuffer>);
         }
         processEndOfBody();
       } catch {
